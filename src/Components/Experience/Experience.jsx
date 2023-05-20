@@ -9,11 +9,17 @@ import {
   useGLTF,
   useHelper,
 } from "@react-three/drei";
+import { useThree } from "@react-three/fiber";
+import { gsap } from "gsap";
 import { useControls } from "leva";
 import { Perf } from "r3f-perf";
 import React, { useRef } from "react";
 
 function Experience({ startWebsite }) {
+  const three = useThree();
+
+  const laptop = useRef(null);
+
   // const backgroundControls = useControls("background", {
   //   color: "red",
   // });
@@ -38,6 +44,16 @@ function Experience({ startWebsite }) {
   // });
 
   const laptopModel = useGLTF("./models/macbookModel.gltf");
+
+  const handleZoomIn = () => {
+    gsap.to(three.camera.position, { x: 0.5, y: 0.5, z: 1, duration: 0.3 });
+    gsap.to(three.camera.rotation, { x: 0, y: 0.48, z: 0.05, duration: 0.3 });
+  };
+
+  const handleZoomOut = () => {
+    gsap.to(three.camera.position, { x: 0, y: 0, z: 4, duration: 0.3 });
+    gsap.to(three.camera.rotation, { x: 0, y: 0, z: 0, duration: 0.3 });
+  };
 
   return (
     <>
@@ -79,7 +95,11 @@ function Experience({ startWebsite }) {
                 position={[0, 1.52, -1.38]}
                 rotation-x={-0.26}
               >
-                <iframe src="https://portfolio2023-chetan-kk.vercel.app/"></iframe>
+                <iframe
+                  onMouseEnter={handleZoomIn}
+                  onMouseLeave={handleZoomOut}
+                  src="https://portfolio2023-chetan-kk.vercel.app/"
+                ></iframe>
               </Html>
             ) : undefined}
           </primitive>
