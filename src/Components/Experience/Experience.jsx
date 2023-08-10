@@ -15,6 +15,13 @@ import { useControls } from "leva";
 import { Perf } from "r3f-perf";
 import React, { useRef } from "react";
 
+import px from "/environmentMap/px.png";
+import nx from "/environmentMap/nx.png";
+import py from "/environmentMap/py.png";
+import ny from "/environmentMap/ny.png";
+import pz from "/environmentMap/pz.png";
+import nz from "/environmentMap/nz.png";
+
 function Experience({ startWebsite }) {
   const three = useThree();
 
@@ -63,7 +70,7 @@ function Experience({ startWebsite }) {
 
       {/* <OrbitControls /> */}
 
-      <Environment preset="city" />
+      <Environment files={[px, nx, py, ny, pz, nz]} />
 
       <PresentationControls
         global
